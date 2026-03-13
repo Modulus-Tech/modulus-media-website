@@ -44,12 +44,32 @@ function buildOmnisendBody(formType, data) {
   const tag = formType === 'advertiser' ? 'advertiser' : 'landowner';
 
   const reserved = new Set(['formType', 'Full Name', 'Email Address', 'Phone', 'email', 'fullName', 'phone', 'botcheck']);
+
+  // Map verbose form labels to Omnisend-friendly custom property keys
+  const fieldNameMap = {
+    'Property City / Area': 'propertyCityArea',
+    'Campaign Objective': 'campaignObjective',
+  };
+
   const customProperties = {};
   for (const [key, value] of Object.entries(data)) {
     if (reserved.has(key) || value === undefined || value === null) continue;
     const v = typeof value === 'string' ? value.trim() : value;
     if (v === '') continue;
-    customProperties[key] = v;
+
+    // Derive a safe property name for Omnisend
+    let propName = fieldNameMap[key] || key;
+    if (!fieldNameMap[key]) {
+      // Lowercase, replace non-alphanumeric with underscore, trim and shorten
+      propName = propName
+        .toString()
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '_')
+        .replace(/^_+|_+$/g, '')
+        .slice(0, 50) || 'field';
+    }
+
+    customProperties[propName] = v;
   }
 
   const identifiers = [
