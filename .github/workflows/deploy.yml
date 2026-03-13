@@ -1,0 +1,58 @@
+# Deploy static site to S3 and invalidate CloudFront
+# Uses OIDC (OpenID Connect) — no long-lived AWS keys stored in GitHub.
+#
+# Required GitHub variables (Settings → Secrets and variables → Actions → Variables):
+#   AWS_REGION                    - e.g. us-east-1
+#   S3_BUCKET                     - S3 bucket name for the website
+#   CLOUDFRONT_DISTRIBUTION_ID    - CloudFront distribution ID to invalidate
+#   AWS_ROLE_ARN                  - ARN of the IAM role for GitHub OIDC (see DEPLOYMENT.md)
+
+name: Deploy to S3 and CloudFront
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  AWS_REGION: ${{ vars.AWS_REGION }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write   # required for OIDC with AWS
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Sync files to S3
+        run: |
+          # Upload assets and other static files with long cache
+          aws s3 sync . s3://${{ vars.S3_BUCKET }}/ \
+            --delete \
+            --exclude '.git/*' \
+            --exclude '.github/*' \
+            --exclude 'README.md' \
+            --exclude '.gitignore' \
+            --exclude '*.md' \
+            --exclude 'index.html' \
+            --cache-control 'public, max-age=31536000, immutable'
+          # Upload index.html with short cache so content updates show quickly
+          aws s3 cp index.html s3://${{ vars.S3_BUCKET }}/index.html \
+            --cache-control 'public, max-age=0, must-revalidate' \
+            --content-type 'text/html; charset=utf-8'
+
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths '/*'
