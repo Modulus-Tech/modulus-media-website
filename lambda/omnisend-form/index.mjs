@@ -69,7 +69,8 @@ function buildOmnisendBody(formType, data) {
       type: 'phone',
       id: phone.replace(/\D/g, ''),
       channels: {
-        sms: { status: 'non_subscribed' },
+        // Omnisend allowed values: subscribed, nonSubscribed, unsubscribed
+        sms: { status: 'nonSubscribed' },
       },
     });
   }
