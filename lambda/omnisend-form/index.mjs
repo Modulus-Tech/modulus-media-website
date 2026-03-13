@@ -8,7 +8,7 @@
 const OMNISEND_API_URL = 'https://api.omnisend.com/v3/contacts';
 
 const CORS_HEADERS = {
-  'Access-Control-Allow-Origin': '*.modulusmedia.co.za',
+  'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'Content-Type',
   'Content-Type': 'application/json',
 };
