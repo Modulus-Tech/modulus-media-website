@@ -21,6 +21,8 @@ env:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    # main → Production; other branches (e.g. manual run) → Staging
+    environment: ${{ github.ref == 'refs/heads/main' && 'Production' || 'Staging' }}
     permissions:
       id-token: write   # required for OIDC with AWS
       contents: read
