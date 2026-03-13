@@ -98,13 +98,21 @@ export async function handler(event) {
 
   let data;
   try {
-    const raw = typeof event.body === 'string' ? event.body : (event.body && JSON.stringify(event.body));
-    data = JSON.parse(raw || '{}');
+    let raw = event.body;
+    if (raw == null) {
+      data = {};
+    } else if (typeof raw === 'object' && !Array.isArray(raw)) {
+      data = raw;
+    } else {
+      const str = typeof raw === 'string' ? (event.isBase64Encoded ? Buffer.from(raw, 'base64').toString('utf8') : raw) : String(raw);
+      data = JSON.parse(str || '{}');
+      if (typeof data === 'string') data = JSON.parse(data);
+    }
   } catch {
     return jsonResponse(400, { success: false, message: 'Invalid JSON body' });
   }
 
-  const formType = (data.formType || '').toLowerCase();
+  const formType = (data.formType ?? data.formtype ?? '').toString().trim().toLowerCase();
   if (formType !== 'advertiser' && formType !== 'landowner') {
     return jsonResponse(400, { success: false, message: 'formType must be "advertiser" or "landowner"' });
   }
