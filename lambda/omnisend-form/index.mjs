@@ -108,6 +108,17 @@ export async function handler(event) {
       data = JSON.parse(str || '{}');
       if (typeof data === 'string') data = JSON.parse(data);
     }
+    // If API Gateway or another proxy wrapped the body, unwrap it
+    if (!('formType' in data || 'formtype' in data) && typeof data.body === 'string') {
+      try {
+        const inner = JSON.parse(data.body);
+        if (inner && typeof inner === 'object') {
+          data = inner;
+        }
+      } catch {
+        // ignore and keep original data
+      }
+    }
   } catch {
     return jsonResponse(400, { success: false, message: 'Invalid JSON body' });
   }
