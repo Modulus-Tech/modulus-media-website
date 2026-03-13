@@ -86,6 +86,12 @@ function buildOmnisendBody(formType, data) {
 }
 
 export async function handler(event) {
+  console.log('Incoming event summary', {
+    hasBody: !!event.body,
+    isBase64Encoded: !!event.isBase64Encoded,
+    contentType: event.headers && (event.headers['content-type'] || event.headers['Content-Type']),
+  });
+
   if (event.requestContext?.http?.method === 'OPTIONS') {
     return jsonResponse(204, null);
   }
@@ -99,6 +105,8 @@ export async function handler(event) {
   let data;
   try {
     let raw = event.body;
+    console.log('Raw body type', typeof raw);
+
     if (raw == null) {
       data = {};
     } else if (typeof raw === 'object' && !Array.isArray(raw)) {
@@ -119,11 +127,17 @@ export async function handler(event) {
         // ignore and keep original data
       }
     }
+    console.log('Parsed data snapshot', {
+      keys: Object.keys(data || {}),
+      formTypeRaw: data && (data.formType ?? data.formtype),
+    });
   } catch {
+    console.error('Body parse error', { raw: event.body });
     return jsonResponse(400, { success: false, message: 'Invalid JSON body' });
   }
 
   const formType = (data.formType ?? data.formtype ?? '').toString().trim().toLowerCase();
+  console.log('Computed formType', formType);
   if (formType !== 'advertiser' && formType !== 'landowner') {
     return jsonResponse(400, { success: false, message: 'formType must be "advertiser" or "landowner"' });
   }
