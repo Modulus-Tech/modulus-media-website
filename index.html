@@ -807,7 +807,23 @@
       });
     });
 
-    async function handleFormSubmit(form, statusEl, successMsg) {
+    // Set this to your API Gateway invoke URL (e.g. https://abc123.execute-api.us-east-1.amazonaws.com/prod/submit)
+    const FORM_API_URL = 'https://YOUR-API-GATEWAY-URL/prod/submit';
+
+    function buildFormPayload(form, formType) {
+      const payload = { formType: formType };
+      const skip = new Set(['access_key', 'subject', 'from_name', 'botcheck']);
+      const inputs = form.querySelectorAll('input, textarea');
+      inputs.forEach(function (input) {
+        const name = input.name && input.name.trim();
+        if (!name || skip.has(name)) return;
+        const value = input.value != null ? String(input.value).trim() : '';
+        if (value) payload[name] = value;
+      });
+      return payload;
+    }
+
+    async function handleFormSubmit(form, statusEl, successMsg, formType) {
       const btn = form.querySelector('.btn-submit');
       const originalText = btn.textContent;
 
@@ -817,13 +833,15 @@
       statusEl.className = 'form-status';
 
       try {
-        const response = await fetch('https://api.web3forms.com/submit', {
+        const payload = buildFormPayload(form, formType);
+        const response = await fetch(FORM_API_URL, {
           method: 'POST',
-          body: new FormData(form)
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
         });
-        const result = await response.json();
+        const result = await response.json().catch(function () { return {}; });
 
-        if (result.success) {
+        if (response.ok && result.success) {
           statusEl.textContent = successMsg;
           statusEl.classList.add('success');
           form.reset();
@@ -843,13 +861,13 @@
     document.getElementById('landownersForm').addEventListener('submit', function (e) {
       e.preventDefault();
       handleFormSubmit(this, document.getElementById('landownersStatus'),
-        'Thank you for joining as a Founding Property Partner!');
+        'Thank you for joining as a Founding Property Partner!', 'landowner');
     });
 
     document.getElementById('advertisersForm').addEventListener('submit', function (e) {
       e.preventDefault();
       handleFormSubmit(this, document.getElementById('advertisersStatus'),
-        'Thank you for joining as a Founding Brand!');
+        'Thank you for joining as a Founding Brand!', 'advertiser');
     });
   </script>
 

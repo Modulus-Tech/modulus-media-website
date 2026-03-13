@@ -1,4 +1,4 @@
-# Deploy static site to S3 and invalidate CloudFront
+# Deploy static site to S3, CloudFront, and Omnisend form Lambda
 # Uses OIDC (OpenID Connect) — no long-lived AWS keys stored in GitHub.
 #
 # Required GitHub variables (Settings → Secrets and variables → Actions → Variables):
@@ -6,8 +6,9 @@
 #   S3_BUCKET                     - S3 bucket name for the website
 #   CLOUDFRONT_DISTRIBUTION_ID    - CloudFront distribution ID to invalidate
 #   AWS_ROLE_ARN                  - ARN of the IAM role for GitHub OIDC (see DEPLOYMENT.md)
+#   LAMBDA_FUNCTION_NAME          - Name of the Omnisend form Lambda (lambda/omnisend-form)
 
-name: Deploy to S3 and CloudFront
+name: Deploy to S3, CloudFront and Lambda
 
 on:
   push:
@@ -58,3 +59,29 @@ jobs:
           aws cloudfront create-invalidation \
             --distribution-id ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }} \
             --paths '/*'
+
+  deploy-lambda:
+    runs-on: ubuntu-latest
+    environment: ${{ github.ref == 'refs/heads/main' && 'Production' || 'Staging' }}
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Package Lambda
+        run: |
+          cd lambda/omnisend-form && zip -r ../../lambda.zip index.mjs && cd ../..
+
+      - name: Deploy Lambda
+        run: |
+          aws lambda update-function-code \
+            --function-name ${{ vars.LAMBDA_FUNCTION_NAME }} \
+            --zip-file fileb://lambda.zip
