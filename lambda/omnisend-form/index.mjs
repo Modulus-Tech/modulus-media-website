@@ -7,17 +7,28 @@
 
 const OMNISEND_API_URL = 'https://api.omnisend.com/v3/contacts';
 
-const CORS_HEADERS = {
-  'Access-Control-Allow-Origin': '*.modulusmedia.co.za',
-  'Access-Control-Allow-Headers': 'Content-Type',
-  'Content-Type': 'application/json',
-};
+const DEFAULT_CORS_ORIGIN = process.env.ALLOWED_ORIGIN || 'https://www.modulusmedia.co.za';
 
-function jsonResponse(statusCode, body, headers = {}) {
+function getCorsHeaders(event) {
+  const origin = event?.headers?.origin || event?.headers?.Origin || '';
+  const allowOrigin =
+    origin && /^https:\/\/([a-z0-9-]+\.)*modulusmedia\.co\.za$/i.test(origin)
+      ? origin
+      : DEFAULT_CORS_ORIGIN;
+  return {
+    'Access-Control-Allow-Origin': allowOrigin,
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Content-Type': 'application/json',
+  };
+}
+
+function jsonResponse(statusCode, body, headers = {}, event = null) {
+  const cors = getCorsHeaders(event || {});
   return {
     statusCode,
-    headers: { ...CORS_HEADERS, ...headers },
-    body: JSON.stringify(body),
+    headers: { ...cors, ...headers },
+    body: body == null ? undefined : JSON.stringify(body),
   };
 }
 
@@ -114,13 +125,13 @@ export async function handler(event) {
   });
 
   if (event.requestContext?.http?.method === 'OPTIONS') {
-    return jsonResponse(204, null);
+    return jsonResponse(204, null, {}, event);
   }
 
   const apiKey = process.env.OMNISEND_API_KEY;
   if (!apiKey) {
     console.error('OMNISEND_API_KEY is not set');
-    return jsonResponse(500, { success: false, message: 'Server configuration error' });
+    return jsonResponse(500, { success: false, message: 'Server configuration error' }, {}, event);
   }
 
   let data;
@@ -154,18 +165,18 @@ export async function handler(event) {
     });
   } catch {
     console.error('Body parse error', { raw: event.body });
-    return jsonResponse(400, { success: false, message: 'Invalid JSON body' });
+    return jsonResponse(400, { success: false, message: 'Invalid JSON body' }, {}, event);
   }
 
   const formType = (data.formType ?? data.formtype ?? '').toString().trim().toLowerCase();
   console.log('Computed formType', formType);
   if (formType !== 'advertiser' && formType !== 'landowner') {
-    return jsonResponse(400, { success: false, message: 'formType must be "advertiser" or "landowner"' });
+    return jsonResponse(400, { success: false, message: 'formType must be "advertiser" or "landowner"' }, {}, event);
   }
 
   const email = (data['Email Address'] || data.email || '').trim().toLowerCase();
   if (!email) {
-    return jsonResponse(400, { success: false, message: 'Email is required' });
+    return jsonResponse(400, { success: false, message: 'Email is required' }, {}, event);
   }
 
   const omnisendBody = buildOmnisendBody(formType, data);
@@ -193,12 +204,12 @@ export async function handler(event) {
       return jsonResponse(502, {
         success: false,
         message: parsed.message || `Omnisend error (${res.status})`,
-      });
+      }, {}, event);
     }
 
-    return jsonResponse(200, { success: true });
+    return jsonResponse(200, { success: true }, {}, event);
   } catch (err) {
     console.error('Omnisend request failed', err);
-    return jsonResponse(502, { success: false, message: 'Unable to complete signup. Please try again.' });
+    return jsonResponse(502, { success: false, message: 'Unable to complete signup. Please try again.' }, {}, event);
   }
 }
