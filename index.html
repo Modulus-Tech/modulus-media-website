@@ -405,23 +405,29 @@
     }
 
     .about-ctas {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.85rem;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.65rem;
       margin-top: 1.75rem;
+      width: 100%;
+      max-width: 24rem;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .about-cta {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0.55rem 1.35rem;
-      font-size: 0.78rem;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0.5rem 0.65rem;
+      font-size: 0.72rem;
       font-weight: 600;
       text-decoration: none;
       border-radius: 999px;
       transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      text-align: center;
     }
 
     .about-cta--primary {
@@ -452,6 +458,13 @@
     .about-cta:focus-visible {
       outline: 2px solid var(--off-white);
       outline-offset: 3px;
+    }
+
+    @media (max-width: 520px) {
+      .about-ctas {
+        grid-template-columns: 1fr;
+        max-width: 17.5rem;
+      }
     }
 
     .logo-area {
@@ -1036,7 +1049,7 @@
           </div>
           <div class="card-body">
             <p class="card-subtitle">Turn Your Property Into a Digital Revenue Asset</p>
-            <p class="card-description">Join our founding property partner list and get early site evaluation access.</p>
+            <p class="card-description">Join our founding property partner list for early access to site evaluations.</p>
             <p class="card-note">We are onboarding a limited number of founding partners.</p>
           </div>
 
@@ -1070,8 +1083,8 @@
             <span class="card-title">Advertisers</span>
           </div>
           <div class="card-body">
-            <p class="card-subtitle">Secure Priority Access to Our Launch Inventory</p>
-            <p class="card-description">Join as a founding brand and receive strategic planning support and early placement advantages.</p>
+            <p class="card-subtitle">Secure Priority, Discounted Billboard Ad Space</p>
+            <p class="card-description">Join as a founding brand to secure discounted billboard space and a complimentary ad campaign setup.</p>
             <p class="card-note">We are onboarding a limited number of founding brands.</p>
           </div>
 
