@@ -330,6 +330,15 @@
       color: var(--white);
     }
 
+    .about-content > h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      line-height: 1.45;
+      color: var(--white);
+      max-width: 640px;
+      margin: 0;
+    }
+
     .about-content p {
       font-size: 0.95rem;
       color: rgba(255, 255, 255, 0.8);
@@ -856,14 +865,34 @@
         font-size: 1.8rem;
       }
 
-      /* CTAs above feature cards on mobile */
-      .about-content .about-ctas {
+      .about-content > h3 {
+        font-size: 1rem;
+      }
+
+      /* CTAs directly under tagline h3, then intro copy, then feature cards */
+      .about-content > .section-label {
         order: 1;
+      }
+
+      .about-content > h2 {
+        order: 2;
+      }
+
+      .about-content > h3 {
+        order: 3;
+      }
+
+      .about-content > .about-ctas {
+        order: 4;
         margin-top: 0.35rem;
       }
 
-      .about-content .about-features {
-        order: 2;
+      .about-content > p {
+        order: 5;
+      }
+
+      .about-content > .about-features {
+        order: 6;
         margin-top: 0.75rem;
       }
 
@@ -911,6 +940,10 @@
         font-size: 1.4rem;
       }
 
+      .about-content > h3 {
+        font-size: 0.92rem;
+      }
+
       .logo-img {
         height: 32px;
       }
@@ -940,7 +973,6 @@
     <div class="navbar-right">
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
-        <li><a href="#contact">Early access</a></li>
       </ul>
       <a href="#contact" class="nav-cta">Join</a>
     </div>
@@ -950,7 +982,8 @@
   <section class="section" id="about">
     <div class="about-content">
       <span class="section-label">About Modulus</span>
-      <h2>The Future of Physical Advertising</h2>
+      <h2>Run Billboard Ads</h2>
+      <h3>Launch Billboard campaigns in minutes or turn your property into income.</h3>
       <p>Modulus is building a next-generation digital out-of-home advertising network that transforms everyday properties into high-impact digital display locations. We connect property owners with brands looking for unmissable, real-world placements.</p>
       <div class="about-features">
         <div class="about-feature">
