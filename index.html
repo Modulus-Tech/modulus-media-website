@@ -407,7 +407,7 @@
     .btn-submit {
       width: 100%;
       padding: 0.65rem 1.5rem;
-      margin-top: 0.6rem;
+      margin-top: 0.45rem;
       font-family: 'Varela Round', sans-serif;
       font-size: 0.82rem;
       font-weight: 600;
@@ -427,6 +427,14 @@
 
     .btn-submit:active {
       transform: translateY(0);
+    }
+
+    .form-reassurance {
+      margin: 0.5rem 0 0;
+      font-size: 0.62rem;
+      line-height: 1.4;
+      color: rgba(255, 255, 255, 0.72);
+      text-align: center;
     }
 
     .form-footer {
@@ -691,20 +699,17 @@
 
             <div class="form-group">
               <label for="lo-name">Full Name</label>
-              <input type="text" id="lo-name" name="Full Name" placeholder="Full Name" required>
+              <input type="text" id="lo-name" name="Full Name" placeholder="Full Name" autocomplete="name" required>
             </div>
             <div class="form-group">
               <label for="lo-email">Email Address</label>
-              <input type="email" id="lo-email" name="Email Address" placeholder="Email Address" required>
+              <input type="email" id="lo-email" name="Email Address" placeholder="Email Address" autocomplete="email" required>
             </div>
             <div class="form-group">
               <label for="lo-phone">Phone (Optional)</label>
-              <input type="tel" id="lo-phone" name="Phone" placeholder="Phone (Optional)">
+              <input type="tel" id="lo-phone" name="Phone" placeholder="Phone (Optional)" autocomplete="tel">
             </div>
-            <div class="form-group">
-              <label for="lo-city">Property City / Area</label>
-              <input type="text" id="lo-city" name="Property City / Area" placeholder="Property City / Area" required>
-            </div>
+            <p class="form-reassurance">We'll only use your details to follow up about Modulus. We won't sell or share them with third parties.</p>
             <button type="submit" class="btn-submit">Join as a Founding Property Partner</button>
             <p class="form-status" id="landownersStatus"></p>
           </form>
@@ -733,20 +738,17 @@
 
             <div class="form-group">
               <label for="ad-name">Full Name</label>
-              <input type="text" id="ad-name" name="Full Name" placeholder="Full Name" required>
+              <input type="text" id="ad-name" name="Full Name" placeholder="Full Name" autocomplete="name" required>
             </div>
             <div class="form-group">
               <label for="ad-email">Email Address</label>
-              <input type="email" id="ad-email" name="Email Address" placeholder="Email Address" required>
+              <input type="email" id="ad-email" name="Email Address" placeholder="Email Address" autocomplete="email" required>
             </div>
             <div class="form-group">
               <label for="ad-phone">Phone (Optional)</label>
-              <input type="tel" id="ad-phone" name="Phone" placeholder="Phone (Optional)">
+              <input type="tel" id="ad-phone" name="Phone" placeholder="Phone (Optional)" autocomplete="tel">
             </div>
-            <div class="form-group">
-              <label for="ad-objective">Campaign Objective</label>
-              <input type="text" id="ad-objective" name="Campaign Objective" placeholder="Campaign Objective" required>
-            </div>
+            <p class="form-reassurance">We'll only use your details to follow up about Modulus. We won't sell or share them with third parties.</p>
             <button type="submit" class="btn-submit">Join as a Founding Brand</button>
             <p class="form-status" id="advertisersStatus"></p>
           </form>
