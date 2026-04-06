@@ -1231,17 +1231,63 @@
     bindFormStart('landownersForm', 'landowner');
     bindFormStart('advertisersForm', 'advertiser');
 
+    function alignInputAboveKeyboard(inputEl) {
+      var pad = 20;
+      function adjust() {
+        if (!inputEl) return;
+        var vv = window.visualViewport;
+        if (!vv) {
+          inputEl.scrollIntoView({ block: 'center', behavior: 'auto' });
+          return;
+        }
+        var rect = inputEl.getBoundingClientRect();
+        var topEdge = vv.offsetTop;
+        var bottomEdge = vv.offsetTop + vv.height;
+        var dy = 0;
+        if (rect.bottom > bottomEdge - pad) {
+          dy = rect.bottom - bottomEdge + pad;
+        } else if (rect.top < topEdge + pad) {
+          dy = rect.top - topEdge - pad;
+        }
+        if (dy !== 0) {
+          window.scrollBy({ top: dy, left: 0, behavior: 'auto' });
+        }
+      }
+      adjust();
+      [100, 250, 450, 750].forEach(function (ms) {
+        window.setTimeout(adjust, ms);
+      });
+      if (window.visualViewport) {
+        var onVV = function () {
+          adjust();
+        };
+        window.visualViewport.addEventListener('resize', onVV);
+        window.visualViewport.addEventListener('scroll', onVV);
+        window.setTimeout(function () {
+          window.visualViewport.removeEventListener('resize', onVV);
+          window.visualViewport.removeEventListener('scroll', onVV);
+        }, 5000);
+      }
+    }
+
     function applyHashFocus() {
       const id = (location.hash || '').replace(/^#/, '');
       if (id !== 'landowners' && id !== 'advertisers') return;
       const card = document.getElementById(id);
-      if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const narrow = window.matchMedia('(max-width: 820px)').matches;
+      if (card) {
+        card.scrollIntoView({ behavior: 'smooth', block: narrow ? 'start' : 'center' });
+      }
       var focusId = id === 'landowners' ? 'lo-name' : 'ad-name';
       var input = document.getElementById(focusId);
       if (input) {
         window.setTimeout(function () {
-          input.focus({ preventScroll: true });
-        }, 450);
+          /* Mobile: allow default scroll-on-focus, then correct when keyboard resizes visual viewport */
+          input.focus({ preventScroll: !narrow });
+          if (narrow) {
+            alignInputAboveKeyboard(input);
+          }
+        }, narrow ? 520 : 450);
       }
     }
 
