@@ -4,6 +4,104 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Modulus — Ads You Can't Scroll Past</title>
+  <meta name="description" content="Modulus is a next-generation digital out-of-home network. Partner your property or request early access for advertisers — nationwide reach, real-time analytics, revenue for owners.">
+  <link rel="canonical" href="https://modulusmedia.co.za/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://modulusmedia.co.za/">
+  <meta property="og:title" content="Modulus — Ads You Can't Scroll Past">
+  <meta property="og:description" content="Digital out-of-home placements that brands can't scroll past. Founding partner sign-ups for landowners and early access for advertisers.">
+  <meta property="og:image" content="https://modulusmedia.co.za/assets/bg-mall.png">
+  <meta property="og:locale" content="en_ZA">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Modulus — Ads You Can't Scroll Past">
+  <meta name="twitter:description" content="Digital out-of-home placements that brands can't scroll past. Partner your property or join for early advertiser access.">
+  <meta name="twitter:image" content="https://modulusmedia.co.za/assets/bg-mall.png">
+  <!-- GA4 via gtag.js (not GTM). Loads only on http(s). Measurement ID: G-MP29JV6DXN -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    (function () {
+      var p = window.location && window.location.protocol;
+      if (p !== 'http:' && p !== 'https:') return;
+      function gtag() { dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', 'G-MP29JV6DXN');
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-MP29JV6DXN';
+      document.head.appendChild(s);
+    })();
+  </script>
+  <!-- Meta Pixel (Facebook) — loads on http(s) only; Pixel ID 1498812854947928 -->
+  <script>
+    (function () {
+      var p = window.location && window.location.protocol;
+      if (p !== 'http:' && p !== 'https:') return;
+      !function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = '2.0';
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '1498812854947928');
+      fbq('track', 'PageView');
+    })();
+  </script>
+  <!-- TikTok Pixel — Modulus TikTok Pixel, ID D76JKFRC77UD6SV8QNNG; loads on http(s) only -->
+  <script>
+    (function () {
+      var p = window.location && window.location.protocol;
+      if (p !== 'http:' && p !== 'https:') return;
+      !function (w, d, t) {
+        w.TiktokAnalyticsObject = t;
+        var ttq = w[t] = w[t] || [];
+        ttq.methods = ['page', 'track', 'identify', 'instances', 'debug', 'on', 'off', 'once', 'ready', 'alias', 'group', 'enableCookie', 'disableCookie', 'holdConsent', 'revokeConsent', 'grantConsent'];
+        ttq.setAndDefer = function (target, method) {
+          target[method] = function () {
+            target.push([method].concat(Array.prototype.slice.call(arguments, 0)));
+          };
+        };
+        for (var i = 0; i < ttq.methods.length; i++) {
+          ttq.setAndDefer(ttq, ttq.methods[i]);
+        }
+        ttq.instance = function (id) {
+          var inst = ttq._i[id] || [];
+          for (var j = 0; j < ttq.methods.length; j++) {
+            ttq.setAndDefer(inst, ttq.methods[j]);
+          }
+          return inst;
+        };
+        ttq.load = function (e, n) {
+          var r = 'https://analytics.tiktok.com/i18n/pixel/events.js';
+          ttq._i = ttq._i || {};
+          ttq._i[e] = [];
+          ttq._i[e]._u = r;
+          ttq._t = ttq._t || {};
+          ttq._t[e] = +new Date();
+          ttq._o = ttq._o || {};
+          ttq._o[e] = n || {};
+          var script = document.createElement('script');
+          script.type = 'text/javascript';
+          script.async = true;
+          script.src = r + '?sdkid=' + e + '&lib=' + t;
+          var first = document.getElementsByTagName('script')[0];
+          first.parentNode.insertBefore(script, first);
+        };
+        ttq.load('D76JKFRC77UD6SV8QNNG');
+        ttq.page();
+      }(window, document, 'ttq');
+    })();
+  </script>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -117,7 +215,47 @@
       color: var(--bg-peach);
     }
 
+    .navbar-right {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.45rem 1.15rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 999px;
+      background: linear-gradient(to right, var(--orange-start), var(--blue-accent));
+      box-shadow: 0 3px 12px rgba(242, 106, 46, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 5px 16px rgba(242, 106, 46, 0.45);
+      color: var(--white);
+    }
+
+    .nav-cta:focus-visible {
+      outline: 2px solid var(--off-white);
+      outline-offset: 3px;
+    }
+
     /* ── Sections (shared) ── */
+    #about,
+    #contact,
+    #landowners,
+    #advertisers {
+      scroll-margin-top: 5rem;
+    }
+
     .section {
       position: relative;
       min-height: 100vh;
@@ -243,6 +381,56 @@
       line-height: 1.5;
     }
 
+    .about-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      justify-content: center;
+      margin-top: 1.75rem;
+    }
+
+    .about-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.55rem 1.35rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 999px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .about-cta--primary {
+      color: var(--white);
+      background: linear-gradient(to right, var(--orange-start), var(--blue-accent));
+      box-shadow: 0 3px 14px rgba(242, 106, 46, 0.3);
+    }
+
+    .about-cta--primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(242, 106, 46, 0.4);
+      color: var(--white);
+    }
+
+    .about-cta--secondary {
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .about-cta--secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: var(--white);
+    }
+
+    .about-cta:focus-visible {
+      outline: 2px solid var(--off-white);
+      outline-offset: 3px;
+    }
+
     .logo-area {
       display: flex;
       align-items: center;
@@ -263,28 +451,49 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      gap: 2rem;
+      gap: 1.25rem;
       padding: 2rem 0 2rem;
     }
 
-    .heading {
+    .contact-hero {
       text-align: center;
-      font-size: 2.8rem;
+      max-width: 720px;
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-tagline {
+      font-size: clamp(1.85rem, 4.5vw, 2.85rem);
       font-weight: 700;
-      line-height: 1.25;
-      letter-spacing: -0.01em;
-      max-width: 700px;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
       color: var(--white);
-      align-self: center;
-      padding-right: 0;
+      margin: 0 0 0.65rem;
+    }
+
+    .contact-subtitle {
+      font-size: clamp(1rem, 2.2vw, 1.35rem);
+      font-weight: 600;
+      line-height: 1.35;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.88);
+      margin: 0;
+    }
+
+    .contact-deck {
+      font-size: 0.82rem;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.78);
+      max-width: 520px;
+      margin: 0 auto;
     }
 
     /* ── Forms Grid ── */
     .forms-container {
       display: flex;
-      gap: 2rem;
+      gap: 4.5rem;
       width: 100%;
-      max-width: 820px;
+      max-width: 900px;
       justify-content: center;
       align-items: flex-start;
       margin-top: auto;
@@ -403,6 +612,12 @@
       box-shadow: 0 0 0 3px rgba(46, 95, 170, 0.12);
     }
 
+    .form-group input:focus-visible,
+    .form-group select:focus-visible {
+      border-color: var(--blue-accent);
+      box-shadow: 0 0 0 3px rgba(46, 95, 170, 0.22);
+    }
+
     /* ── Submit Button ── */
     .btn-submit {
       width: 100%;
@@ -429,6 +644,22 @@
       transform: translateY(0);
     }
 
+    .btn-submit:focus-visible {
+      outline: 2px solid var(--off-white);
+      outline-offset: 3px;
+    }
+
+    .card-next-step {
+      font-size: 0.66rem;
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.82);
+      margin: 0 0 0.55rem;
+      padding: 0.45rem 0.55rem;
+      border-radius: 10px;
+      background: rgba(15, 33, 71, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
     .form-reassurance {
       margin: 0.5rem 0 0;
       font-size: 0.62rem;
@@ -453,8 +684,33 @@
     }
 
     .btn-submit:disabled {
-      opacity: 0.7;
+      opacity: 0.55;
       cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .form-status.success {
+      padding: 0.85rem 1rem;
+      border-radius: 12px;
+      background: rgba(46, 95, 170, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: var(--white);
+      line-height: 1.45;
+    }
+
+    .form-status.success::before {
+      content: '';
+      display: block;
+      width: 22px;
+      height: 22px;
+      margin: 0 auto 0.5rem;
+      background: no-repeat center / contain;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.5'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E");
+    }
+
+    .form-status.error {
+      color: #ffccd0;
     }
 
     /* ── Decorative Swirl (bottom of cards) ── */
@@ -516,6 +772,12 @@
       color: var(--white);
     }
 
+    .footer-contact a:focus-visible {
+      outline: 2px solid rgba(255, 255, 255, 0.85);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
     .footer-socials {
       display: flex;
       gap: 1rem;
@@ -544,6 +806,10 @@
     .social-link:hover svg {
       fill: var(--white);
     }
+    .social-link:focus-visible {
+      outline: 2px solid rgba(255, 255, 255, 0.85);
+      outline-offset: 3px;
+    }
     .footer-copy {
       font-size: 0.68rem;
       color: rgba(255, 255, 255, 0.4);
@@ -555,6 +821,15 @@
         padding: 0.7rem 1.5rem;
       }
 
+      .navbar-right {
+        gap: 0.65rem;
+      }
+
+      .nav-cta {
+        padding: 0.4rem 0.85rem;
+        font-size: 0.75rem;
+      }
+
       .nav-links {
         gap: 1.2rem;
       }
@@ -563,14 +838,19 @@
         padding: 5rem 1.5rem 2rem;
       }
 
-      .heading {
-        font-size: 2rem;
-        align-self: center;
-        padding-right: 0;
-      }
-
       .about-content h2 {
         font-size: 1.8rem;
+      }
+
+      /* CTAs above feature cards on mobile */
+      .about-content .about-ctas {
+        order: 1;
+        margin-top: 0.35rem;
+      }
+
+      .about-content .about-features {
+        order: 2;
+        margin-top: 0.75rem;
       }
 
       .forms-container {
@@ -605,10 +885,12 @@
     }
 
     @media (max-width: 480px) {
-      .heading {
-        font-size: 1.6rem;
-        align-self: center;
-        padding-right: 0;
+      .contact-tagline {
+        font-size: 1.55rem;
+      }
+
+      .contact-subtitle {
+        font-size: 0.88rem;
       }
 
       .about-content h2 {
@@ -619,6 +901,14 @@
         height: 32px;
       }
 
+      .navbar-right .nav-links {
+        gap: 0.75rem;
+      }
+
+      .nav-links a {
+        font-size: 0.78rem;
+      }
+
       .form-card {
         padding: 1.5rem 1.2rem 1.2rem;
       }
@@ -626,16 +916,20 @@
   </style>
 </head>
 <body>
-
+  <noscript><img height="1" width="1" style="display:none" alt=""
+    src="https://www.facebook.com/tr?id=1498812854947928&amp;ev=PageView&amp;noscript=1"></noscript>
   <!-- Navbar -->
   <nav class="navbar" id="navbar">
     <a href="#about" class="logo-area">
       <img src="assets/logo.svg" alt="Modulus — Ads you can't scroll past" class="logo-img">
     </a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+    <div class="navbar-right">
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Early access</a></li>
+      </ul>
+      <a href="#contact" class="nav-cta">Join</a>
+    </div>
   </nav>
 
   <!-- About Section -->
@@ -645,6 +939,13 @@
       <h2>The Future of Physical Advertising</h2>
       <p>Modulus is building a next-generation digital out-of-home advertising network that transforms everyday properties into high-impact digital display locations. We connect property owners with brands looking for unmissable, real-world placements.</p>
       <div class="about-features">
+        <div class="about-feature">
+          <div class="feature-icon">
+            <img src="assets/icon-revenue.svg" alt="Revenue" class="feature-icon-img">
+          </div>
+          <h3>Revenue for Owners</h3>
+          <p>Property owners earn passive income by hosting digital displays on their sites.</p>
+        </div>
         <div class="about-feature">
           <div class="feature-icon">
             <img src="assets/icon-reach.svg" alt="Reach" class="feature-icon-img">
@@ -659,13 +960,10 @@
           <h3>Real-Time Analytics</h3>
           <p>Track impressions and engagement with data-driven insights for every campaign.</p>
         </div>
-        <div class="about-feature">
-          <div class="feature-icon">
-            <img src="assets/icon-revenue.svg" alt="Revenue" class="feature-icon-img">
-          </div>
-          <h3>Revenue for Owners</h3>
-          <p>Property owners earn passive income by hosting digital displays on their sites.</p>
-        </div>
+      </div>
+      <div class="about-ctas">
+        <a href="#landowners" class="about-cta about-cta--primary">Partner your property</a>
+        <a href="#advertisers" class="about-cta about-cta--secondary">Claim Early Access Discount</a>
       </div>
     </div>
   </section>
@@ -673,12 +971,16 @@
   <!-- Contact Section -->
   <section class="section" id="contact">
     <div class="contact-content">
-      <h1 class="heading">Be First To Access<br>The Modulus Network</h1>
+      <div class="contact-hero">
+        <h1 class="contact-tagline">Ads you can't scroll past</h1>
+        <p class="contact-subtitle">Be first to access the Modulus network</p>
+        <p class="contact-deck">Join as a founding property partner or secure early advertiser access — limited founding spots for both.</p>
+      </div>
 
       <div class="forms-container">
 
         <!-- Landowners Form -->
-        <div class="form-card">
+        <div class="form-card" id="landowners">
           <div class="card-header">
             <div class="card-icon landowners">
               <img src="assets/icon-landowners.svg" alt="Landowners" class="card-icon-img">
@@ -691,11 +993,8 @@
             <p class="card-note">We are onboarding a limited number of founding partners.</p>
           </div>
 
-          <form id="landownersForm" action="https://api.web3forms.com/submit" method="POST">
-            <input type="hidden" name="access_key" value="b3c9ef9b-ce10-450b-947e-a8cc573ebd21">
-            <input type="hidden" name="subject" value="New Founding Property Partner Signup">
-            <input type="hidden" name="from_name" value="Modulus — Landowners Form">
-            <input type="checkbox" name="botcheck" style="display: none;">
+          <form id="landownersForm" method="post" action="#">
+            <p class="card-next-step"><strong>Next step:</strong> We’ll be in touch via email to learn more about your property and schedule a site assessment to see if it’s a good fit for a digital screen.</p>
 
             <div class="form-group">
               <label for="lo-name">Full Name</label>
@@ -711,13 +1010,12 @@
             </div>
             <p class="form-reassurance">We'll only use your details to follow up about Modulus. We won't sell or share them with third parties.</p>
             <button type="submit" class="btn-submit">Join as a Founding Property Partner</button>
-            <p class="form-status" id="landownersStatus"></p>
+            <p class="form-status" id="landownersStatus" role="status" aria-live="polite"></p>
           </form>
-          <p class="form-footer">We'll contact you once site assessments begin.</p>
         </div>
 
         <!-- Advertisers Form -->
-        <div class="form-card">
+        <div class="form-card" id="advertisers">
           <div class="card-header">
             <div class="card-icon advertisers">
               <img src="assets/icon-advertisers.svg" alt="Advertisers" class="card-icon-img">
@@ -730,11 +1028,8 @@
             <p class="card-note">We are onboarding a limited number of founding brands.</p>
           </div>
 
-          <form id="advertisersForm" action="https://api.web3forms.com/submit" method="POST">
-            <input type="hidden" name="access_key" value="b3c9ef9b-ce10-450b-947e-a8cc573ebd21">
-            <input type="hidden" name="subject" value="New Founding Brand Signup">
-            <input type="hidden" name="from_name" value="Modulus — Advertisers Form">
-            <input type="checkbox" name="botcheck" style="display: none;">
+          <form id="advertisersForm" method="post" action="#">
+            <p class="card-next-step"><strong>Next step:</strong> We’ll email you with more details about how to secure early access to our billboard sites. Founding brands can qualify for up to a year of discounted advertising.</p>
 
             <div class="form-group">
               <label for="ad-name">Full Name</label>
@@ -750,9 +1045,8 @@
             </div>
             <p class="form-reassurance">We'll only use your details to follow up about Modulus. We won't sell or share them with third parties.</p>
             <button type="submit" class="btn-submit">Join as a Founding Brand</button>
-            <p class="form-status" id="advertisersStatus"></p>
+            <p class="form-status" id="advertisersStatus" role="status" aria-live="polite"></p>
           </form>
-          <p class="form-footer">Limited early-access placements available.</p>
         </div>
 
       </div>
@@ -790,10 +1084,58 @@
     </div>
   </footer>
 
+  <!-- LinkedIn Insight Tag — partner ID 9805945; loads on http(s) only -->
+  <script type="text/javascript">
+    (function () {
+      var p = window.location && window.location.protocol;
+      if (p !== 'http:' && p !== 'https:') return;
+      window._linkedin_partner_id = '9805945';
+      window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+      window._linkedin_data_partner_ids.push(window._linkedin_partner_id);
+    })();
+  </script>
+  <script type="text/javascript">
+    (function () {
+      var p = window.location && window.location.protocol;
+      if (p !== 'http:' && p !== 'https:') return;
+      (function (l) {
+        if (!l) {
+          window.lintrk = function (a, b) { window.lintrk.q.push([a, b]); };
+          window.lintrk.q = [];
+        }
+        var s = document.getElementsByTagName('script')[0];
+        var b = document.createElement('script');
+        b.type = 'text/javascript';
+        b.async = true;
+        b.src = 'https://snap.licdn.com/li.lms-analytics/insight.min.js';
+        s.parentNode.insertBefore(b, s);
+      })(window.lintrk);
+    })();
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none" alt=""
+      src="https://px.ads.linkedin.com/collect/?pid=9805945&amp;fmt=gif">
+  </noscript>
+
   <script>
     const navbar = document.getElementById('navbar');
     const navLinks = document.querySelectorAll('.nav-links a');
     const sections = document.querySelectorAll('.section');
+
+    function dataLayerPush(obj) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push(obj);
+      if (typeof window.gtag === 'function' && obj && obj.event) {
+        var eventName = obj.event;
+        var params = {};
+        for (var key in obj) {
+          if (Object.prototype.hasOwnProperty.call(obj, key) && key !== 'event') {
+            params[key] = obj[key];
+          }
+        }
+        window.gtag('event', eventName, params);
+      }
+    }
 
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 40);
@@ -808,20 +1150,79 @@
       });
     });
 
+    document.body.addEventListener('click', function (e) {
+      const a = e.target.closest && e.target.closest('a');
+      if (!a || !a.href) return;
+      let section = '';
+      if (a.closest('#navbar')) section = 'navbar';
+      else if (a.closest('.about-ctas')) section = 'about';
+      else if (a.closest('.site-footer')) section = 'footer';
+      if (!section) return;
+      let linkText = (a.textContent || '').replace(/\s+/g, ' ').trim();
+      if (!linkText) linkText = (a.getAttribute('aria-label') || '').trim();
+      dataLayerPush({
+        event: 'cta_click',
+        link_url: a.href,
+        link_text: linkText.slice(0, 120),
+        section: section
+      });
+    });
+
+    function bindFormStart(formId, formType) {
+      const form = document.getElementById(formId);
+      if (!form) return;
+      let started = false;
+      function onStart() {
+        if (started) return;
+        started = true;
+        dataLayerPush({ event: 'form_start', form_type: formType });
+      }
+      form.addEventListener('focusin', onStart);
+      form.addEventListener('change', onStart);
+    }
+
+    bindFormStart('landownersForm', 'landowner');
+    bindFormStart('advertisersForm', 'advertiser');
+
+    function applyHashFocus() {
+      const id = (location.hash || '').replace(/^#/, '');
+      if (id !== 'landowners' && id !== 'advertisers') return;
+      const card = document.getElementById(id);
+      if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      var focusId = id === 'landowners' ? 'lo-name' : 'ad-name';
+      var input = document.getElementById(focusId);
+      if (input) {
+        window.setTimeout(function () {
+          input.focus({ preventScroll: true });
+        }, 450);
+      }
+    }
+
+    window.addEventListener('hashchange', applyHashFocus);
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', applyHashFocus);
+    } else {
+      applyHashFocus();
+    }
+
     // Set this to your API Gateway invoke URL (e.g. https://abc123.execute-api.us-east-1.amazonaws.com/prod/submit)
     const FORM_API_URL = 'https://rfqw9aon49.execute-api.af-south-1.amazonaws.com/prod/omnisend-submit';
 
     function buildFormPayload(form, formType) {
       const payload = { formType: formType };
-      const skip = new Set(['access_key', 'subject', 'from_name', 'botcheck']);
       const inputs = form.querySelectorAll('input, textarea');
       inputs.forEach(function (input) {
         const name = input.name && input.name.trim();
-        if (!name || skip.has(name)) return;
+        if (!name) return;
         const value = input.value != null ? String(input.value).trim() : '';
         if (value) payload[name] = value;
       });
       return payload;
+    }
+
+    function safeErrMsg(msg) {
+      var s = msg != null ? String(msg) : 'error';
+      return s.replace(/[\r\n]+/g, ' ').trim().slice(0, 120);
     }
 
     async function handleFormSubmit(form, statusEl, successMsg, formType) {
@@ -845,14 +1246,30 @@
         if (response.ok && result.success) {
           statusEl.textContent = successMsg;
           statusEl.classList.add('success');
+          dataLayerPush({ event: 'generate_lead', form_type: formType });
+          if (typeof fbq === 'function') {
+            fbq('track', 'Lead', { content_name: formType });
+          }
+          if (window.ttq && typeof window.ttq.track === 'function') {
+            window.ttq.track('SubmitForm', { content_name: formType });
+          }
+          if (typeof window.lintrk === 'function') {
+            window.lintrk('track', { conversion_id: 27107257 });
+          }
           form.reset();
         } else {
           statusEl.textContent = result.message || 'Something went wrong. Please try again.';
           statusEl.classList.add('error');
+          dataLayerPush({
+            event: 'form_error',
+            form_type: formType,
+            error_message: safeErrMsg(result.message || (response.ok ? 'submit_failed' : 'http_' + response.status))
+          });
         }
-      } catch {
+      } catch (err) {
         statusEl.textContent = 'Network error. Please check your connection and try again.';
         statusEl.classList.add('error');
+        dataLayerPush({ event: 'form_error', form_type: formType, error_message: 'network_error' });
       } finally {
         btn.disabled = false;
         btn.textContent = originalText;
@@ -862,13 +1279,13 @@
     document.getElementById('landownersForm').addEventListener('submit', function (e) {
       e.preventDefault();
       handleFormSubmit(this, document.getElementById('landownersStatus'),
-        'Thank you for joining as a Founding Property Partner!', 'landowner');
+        "You're on the list. Thank you — we'll email you with next steps for founding property partners.", 'landowner');
     });
 
     document.getElementById('advertisersForm').addEventListener('submit', function (e) {
       e.preventDefault();
       handleFormSubmit(this, document.getElementById('advertisersStatus'),
-        'Thank you for joining as a Founding Brand!', 'advertiser');
+        "You're on the list. Thank you — we'll email you with launch timing and founding brand options.", 'advertiser');
     });
   </script>
 
